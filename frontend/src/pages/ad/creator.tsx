@@ -40,7 +40,7 @@ const AdCreator = () => {
           await mutateAsync(valuesInArray, "You are now a Ads Manager");
           router.replace("/ad/profile");
         }}
-        submitButton={{ title: "Upload" }}
+        submitButton={{ title: "Create" }}
       >
         <Input
           label="Company Name"

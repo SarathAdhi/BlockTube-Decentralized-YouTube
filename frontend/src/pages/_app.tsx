@@ -1,11 +1,11 @@
 import "@styles/globals.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 import type { AppProps } from "next/app";
 import { ThirdwebProvider, useAddress } from "@thirdweb-dev/react";
 import { Toaster } from "react-hot-toast";
-import "primeicons/primeicons.css";
 import { useContractReadVal } from "@hooks/useContractRead";
 import { useEffect, useState } from "react";
 import { useStore } from "@utils/store";
@@ -34,19 +34,19 @@ const PageComponent = ({ Component, pageProps }: AppProps) => {
     setMyAdProfile({ ...adsManagerData }, () => setIsLoading(false));
   }
 
-  // useEffect(() => {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
+  useEffect(() => {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
 
-  //     return;
-  //   });
+      return;
+    });
 
-  //   document.addEventListener("keydown", (e) => {
-  //     if (e.ctrlKey && e.shiftKey && e.key == "I") {
-  //       e.preventDefault();
-  //     }
-  //   });
-  // }, []);
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key == "I") {
+        e.preventDefault();
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (userData && adsManagerData) setMyProfileFunc();
