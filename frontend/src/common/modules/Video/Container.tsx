@@ -49,6 +49,8 @@ const VideoContainer: React.FC<Props> = ({
   isLoading,
   small = false,
 }) => {
+  const { mutateAsync: deleteVideo } = useContractWrite("deleteVideo");
+
   if (isLoading)
     return (
       <ContainerWrapper small={small}>
@@ -59,8 +61,6 @@ const VideoContainer: React.FC<Props> = ({
     );
 
   if (!videos) return <></>;
-
-  const { mutateAsync: deleteVideo } = useContractWrite("deleteVideo");
 
   return (
     <ContainerWrapper small={small}>
