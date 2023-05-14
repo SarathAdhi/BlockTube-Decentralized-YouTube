@@ -6,7 +6,7 @@
 <li><a  href="#solution">Solution</a></li>
 <li><a  href="#tech-stack">Tech Stack</a></li>
 <li><a  href="#usage-of-blockchain">Usage of Blockchain</a></li>
-<li><a  href="#add-polygon-matic-mumbai-to-metamask">Usage of Blockchain</a></li>
+<li><a  href="#add-polygon-matic-mumbai-to-metamask">Add Polygon Matic Mumbai to metamask</a></li>
 
 ## Problem Statement
 
