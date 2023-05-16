@@ -16,14 +16,14 @@ const PageComponent = ({ Component, pageProps }: AppProps) => {
   const { setMyProfile, setMyAdProfile } = useStore();
   const address = useAddress();
 
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const { data: userData } = useContractReadVal(
     "getUserProfile",
     "blocktube",
     address
   );
-  const { data: adsManagerData } = useContractReadVal(
+  const { data: adsManagerData, isLoading } = useContractReadVal(
     "getManagerProfile",
     "blocktubeAds",
     address
@@ -31,7 +31,7 @@ const PageComponent = ({ Component, pageProps }: AppProps) => {
 
   async function setMyProfileFunc() {
     setMyProfile({ ...userData });
-    setMyAdProfile({ ...adsManagerData }, () => setIsLoading(false));
+    setMyAdProfile({ ...adsManagerData });
   }
 
   useEffect(() => {
