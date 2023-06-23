@@ -7,7 +7,7 @@ import type { AppProps } from "next/app";
 import { ThirdwebProvider, useAddress } from "@thirdweb-dev/react";
 import { Toaster } from "react-hot-toast";
 import { useContractReadVal } from "@hooks/useContractRead";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useStore } from "@utils/store";
 import LoadingPage from "@components/LoadingPage";
 import { ConnectWalletPrompt } from "@components/ConnectWalletPage";
@@ -16,14 +16,12 @@ const PageComponent = ({ Component, pageProps }: AppProps) => {
   const { setMyProfile, setMyAdProfile } = useStore();
   const address = useAddress();
 
-  // const [isLoading, setIsLoading] = useState(true);
-
-  const { data: userData } = useContractReadVal(
+  const { data: userData, isLoading } = useContractReadVal(
     "getUserProfile",
     "blocktube",
     address
   );
-  const { data: adsManagerData, isLoading } = useContractReadVal(
+  const { data: adsManagerData } = useContractReadVal(
     "getManagerProfile",
     "blocktubeAds",
     address

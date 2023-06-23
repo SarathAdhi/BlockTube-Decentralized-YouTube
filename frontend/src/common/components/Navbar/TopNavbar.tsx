@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +16,10 @@ const TopNavbar = () => {
   const router = useRouter();
 
   const menu = useRef<Menu>(null);
+
+  const [searchField, setSearchField] = useState(
+    `${router.query?.q ? router.query?.q : ""}`
+  );
 
   const items: MenuItem[] = [
     {
@@ -37,6 +41,12 @@ const TopNavbar = () => {
     },
   ];
 
+  function handleSearch(e: React.FormEvent) {
+    e.preventDefault();
+
+    router.replace(searchField ? `/?q=${searchField}` : "/");
+  }
+
   return (
     <header className="sticky z-50 top-0 w-full bg-[#111] border-b border-b-gray-600">
       <div className="p-2 md:p-5 flex items-center justify-between">
@@ -50,12 +60,19 @@ const TopNavbar = () => {
           />
         </Link>
 
-        <div className="absolute hidden md:block left-[50%] -translate-x-1/2">
+        <form
+          onSubmit={handleSearch}
+          className="absolute hidden md:block left-[50%] -translate-x-1/2"
+        >
           <span className="p-input-icon-left">
             <i className="pi pi-search" />
-            <InputText className="w-auto focus:w-96 !rounded-full !py-2 !duration-500 !transition-all" />
+            <InputText
+              value={searchField}
+              onChange={(e) => setSearchField(e.target.value)}
+              className="w-auto focus:w-96 !rounded-full !py-2 !duration-500 !transition-all"
+            />
           </span>
-        </div>
+        </form>
 
         <div className="flex items-center  gap-5">
           <button className="!block md:!hidden">
