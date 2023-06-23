@@ -21,6 +21,7 @@ const PageComponent = ({ Component, pageProps }: AppProps) => {
     "blocktube",
     address
   );
+
   const { data: adsManagerData } = useContractReadVal(
     "getManagerProfile",
     "blocktubeAds",
@@ -47,7 +48,7 @@ const PageComponent = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   useEffect(() => {
-    if (userData && adsManagerData) setMyProfileFunc();
+    if (address) setMyProfileFunc();
   }, [userData, adsManagerData]);
 
   if (isLoading) return <LoadingPage />;

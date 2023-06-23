@@ -1,6 +1,6 @@
 import Input from "@components/elements/Input";
 import InputFile from "@components/elements/InputFile";
-import Form, { FormProps } from "@components/Form";
+import Form from "@components/Form";
 import useContractWrite from "@hooks/useContractWrite";
 import { PageLayout } from "@layouts/PageLayout";
 import { useStore } from "@utils/store";
@@ -20,12 +20,12 @@ const schema = y.object().shape({
 
 const AdCreator = () => {
   const router = useRouter();
-  const { isAdManager } = useStore();
+  const { isAdManager, adAccount } = useStore();
   const { mutateAsync } = useContractWrite("createManager", "blocktubeAds");
 
   useEffect(() => {
-    if (isAdManager) router.replace("/ad");
-  }, []);
+    if (isAdManager) router.replace("/ad/profile");
+  }, [adAccount]);
 
   return (
     <PageLayout title="Ads Manager | Creator" isAdPage>
